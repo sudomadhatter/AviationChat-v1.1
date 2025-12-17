@@ -1,27 +1,16 @@
-# Environments
-.env
-.venv
+# Dependencies
+/node_modules
 
-# Node
-node_modules
+# Build output
+/.next/
+/out/
 
-# Python
-__pycache__/
-.pytest_cache/
-.ipynb_checkpoints/
+# Log files
+*.log
+firebase-debug.log*
 
-# IDE
-.idea/
-.vscode/
-!/.vscode/settings.json
-!/.vscode/tasks.json
-!/.vscode/launch.json
-!/.vscode/extensions.json
-
-# Build artifacts
-build/
-dist/
-*.egg-info/
+# Local environment variables
+.env.local
 
 # Other
 .DS_Store
