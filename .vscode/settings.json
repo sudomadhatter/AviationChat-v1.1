@@ -3,5 +3,6 @@
         "origin",
         "upstream",
         "src/components"
-    ]
+    ],
+    "python.defaultInterpreterPath": ".venv/bin/python"
 }

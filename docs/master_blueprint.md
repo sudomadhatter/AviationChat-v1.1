@@ -33,7 +33,7 @@ Platform (The Flight School Tutor App)
 ## 2. The "Golden Stack" (Technical Constraints)
 * **Development Environment:** Firebase Studio (Vibe Coding Console).
 * **Frontend:** React / Next.js (Deployed via Firebase App Hosting).
-* **Backend / Agent Framework:** Google GenKit for all Agents
+* **Backend / Agent Framework:** Google ADK for all agents
 * **Database (Engine 1):** Cloud SQL for PostgreSQL (Operational Data & Memory).
 * **Knowledge Base (Engine 2):** Vertex AI Search (RAG for PDF Manuals).
 * **Voice Interface:** Gemini Live API (WebSocket) for low-latency voice interaction.

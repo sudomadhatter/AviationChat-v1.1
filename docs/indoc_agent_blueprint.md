@@ -60,7 +60,7 @@ The INDOC Agent serves as the primary entry point for user interaction, function
     - `recent_checkride_result` (string/object)
     - `weak_areas` (array of strings)
 
-### 3. GenKit Configuration
+### 3. Agent Development Kit (ADK) Configuration
 - **Sales Flow:** Uses a static system prompt with RAG access to "Product Info" (or hardcoded knowledge for MVP).
 - **HR Flow:** Uses a tool-calling flow.
     - **Tool:** `updateUserMetrics(metrics: PilotMetrics)`
