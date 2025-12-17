@@ -1,35 +1,27 @@
-import os
-import firebase_admin
-from firebase_admin import credentials, firestore
-from flask import Flask, request, jsonify
-from dotenv import load_dotenv
+from google.adk.agents import base_agent
 
-# Load environment variables
-load_dotenv()
+class IndocAgent(base_agent.BaseAgent):
+    """
+    The Indoc Agent is responsible for onboarding new users.
+    It interviews the user to establish a baseline and writes the initial
+    JSON object to the pilot_metrics table in Cloud SQL.
+    """
 
-# Initialize Flask App
-app = Flask(__name__)
+    def run(self, user_input: str) -> str:
+        """
+        Runs the Indoc Agent.
 
-# Initialize Firebase Admin
-# Note: In Cloud Run, credentials are auto-detected. Locally, set GOOGLE_APPLICATION_CREDENTIALS.
-try:
-    firebase_admin.initialize_app()
-    db = firestore.client()
-    print("Firebase Admin Initialized")
-except Exception as e:
-    print(f"Error initializing Firebase Admin: {e}")
+        Args:
+            user_input: The user's input.
 
-@app.route("/", methods=["GET"])
-def health_check():
-    return jsonify({"status": "ok", "service": "AviationChat Agent Backend"}), 200
+        Returns:
+            A string with the agent's response.
+        """
+        # TODO: Implement the agent's logic here.
+        # This will involve:
+        # 1. Checking if the user is new or returning.
+        # 2. If the user is new, ask a series of questions to establish a baseline.
+        # 3. If the user is returning, check if their pilot_metrics are up to date.
+        # 4. Write the pilot_metrics to the Cloud SQL database.
 
-# Placeholder for Agent Endpoint
-@app.route("/agent/indoc", methods=["POST"])
-def indoc_agent():
-    data = request.json
-    # TODO: Implement ADK Agent Logic here
-    return jsonify({"response": "Indoc Agent Placeholder Response", "input": data}), 200
-
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8080))
-    app.run(host="0.0.0.0", port=port)
+        return "Hello! I am the Indoc Agent. I'm here to help you get started. What is your name?"
