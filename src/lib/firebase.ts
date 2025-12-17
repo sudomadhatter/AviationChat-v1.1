@@ -4,12 +4,12 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  "projectId": "aviationchat",
-  "appId": "1:856831340418:web:41c916b1a4bc855a4ba99b",
-  "storageBucket": "aviationchat.firebasestorage.app",
-  "apiKey": "AIzaSyBuJR-gaZbAagH1PnbAzCTv-y0y2XUr-bY",
-  "authDomain": "aviationchat.firebaseapp.com",
-  "messagingSenderId": "856831340418"
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
 };
 
 // Initialize Firebase

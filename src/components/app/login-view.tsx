@@ -5,13 +5,34 @@ import { MessageCircle, ArrowUpRight } from 'lucide-react';
 import { ChatModal, Message } from './chat-modal';
 
 interface LoginViewProps {
-  onLogin: () => void;
+  onLogin: (e: React.FormEvent<HTMLFormElement>) => void;
+  onSignUp: (e: React.FormEvent<HTMLFormElement>) => void;
+  onGoogleSignIn: () => void;
+  onAppleSignIn: () => void; // Added for consistency
+  email: string;
+  setEmail: (email: string) => void;
+  password: string;
+  setPassword: (password: string) => void;
+  isSignUp: boolean;
+  setIsSignUp: (isSignUp: boolean) => void;
+  error: string | null;
 }
 
-export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
+export const LoginView: React.FC<LoginViewProps> = ({ 
+  onLogin,
+  onSignUp,
+  onGoogleSignIn,
+  onAppleSignIn,
+  email,
+  setEmail,
+  password,
+  setPassword,
+  isSignUp,
+  setIsSignUp,
+  error
+ }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [isChatOpen, setIsChatOpen] = useState(false);
-  const [isSignUp, setIsSignUp] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 'init',
@@ -22,12 +43,13 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
     },
   ]);
 
-  const handleLoginSubmit = () => {
-    setIsVisible(false);
-    // Delay to allow animation
-    setTimeout(() => {
-      onLogin();
-    }, 700);
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (isSignUp) {
+        onSignUp(e);
+    } else {
+        onLogin(e);
+    }
   };
 
   const onOpenIndoc = () => {
@@ -109,10 +131,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
             {/* Login / Sign Up Form */}
             <form
               className="w-full space-y-4"
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleLoginSubmit();
-              }}
+              onSubmit={handleSubmit}
             >
               {isSignUp && (
                 <div className="group relative">
@@ -131,6 +150,8 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
                   name="email"
                   autoComplete="email"
                   placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="block w-full rounded-full border border-white/10 bg-black/20 py-4 px-6 text-sm font-light text-white placeholder-slate-400 focus:border-[#00C2FF]/50 focus:ring-1 focus:ring-[#00C2FF]/50 focus:bg-black/40 focus:outline-none transition-all backdrop-blur-sm"
                 />
               </div>
@@ -138,9 +159,13 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
                 <input
                   type="password"
                   placeholder="Passcode"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="block w-full rounded-full border border-white/10 bg-black/20 py-4 px-6 text-sm font-light text-white placeholder-slate-400 focus:border-[#00C2FF]/50 focus:ring-1 focus:ring-[#00C2FF]/50 focus:bg-black/40 focus:outline-none transition-all backdrop-blur-sm"
                 />
               </div>
+              
+              {error && <p className="text-red-500 text-sm text-center">{error}</p>}
 
               <button
                 type="submit"
@@ -173,7 +198,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
                 <div className="grid grid-cols-2 gap-3">
                   <button
                     type="button"
-                    onClick={onLogin}
+                    onClick={onGoogleSignIn}
                     className="flex items-center justify-center gap-2 py-3.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all text-sm font-medium text-slate-300 hover:text-white group backdrop-blur-sm"
                   >
                     <svg
@@ -202,7 +227,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
                   </button>
                   <button
                     type="button"
-                    onClick={onLogin}
+                    onClick={onAppleSignIn}
                     className="flex items-center justify-center gap-2 py-3.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all text-sm font-medium text-slate-300 hover:text-white group backdrop-blur-sm"
                   >
                     <svg

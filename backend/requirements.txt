@@ -1,6 +1,0 @@
-google-cloud-aiplatform
-firebase-admin
-flask
-gunicorn
-git+https://github.com/google/adk-python.git
-python-dotenv

@@ -1,20 +1,32 @@
-# Dependencies
-/node_modules
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Build output
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# next.js
 /.next/
 /out/
 
-# Log files
-*.log
-firebase-debug.log*
+# production
+/build
 
-# Local environment variables
-.env.local
-.env
-
-# Other
+# misc
 .DS_Store
+*.pem
 
-# Virtualenv
-.venv/
+# debug
+.env*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# vercel
+.vercel
+
+# turbo
+.turbo
