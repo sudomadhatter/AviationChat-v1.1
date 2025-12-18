@@ -29,7 +29,7 @@ export const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose, messages,
   const accentBgClass = isIndoc ? 'bg-[#E000FF]' : 'bg-[#00C2FF]';
   const accentBorderClass = isIndoc ? 'border-[#E000FF]' : 'border-[#00C2FF]';
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!inputValue.trim()) return;
     
     const now = new Date();
@@ -43,19 +43,42 @@ export const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose, messages,
     };
     
     setMessages(prev => [...prev, newUserMsg]);
+    const currentInput = inputValue;
     setInputValue('');
     setIsTyping(true);
 
-    // Simulate AI response
-    setTimeout(() => {
+    try {
+      const response = await fetch("http://localhost:8000/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ user_input: currentInput }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      
       setMessages(prev => [...prev, { 
-        id: (Date.now() + 1).toString(), 
+        id: Date.now().toString(), 
         role: 'assistant', 
-        content: `Acknowledged. Processing request via ${agentName}. Here is the relevant procedure...`,
+        content: data.response,
         timestamp: timeString
       }]);
+    } catch (error) {
+      console.error("Error connecting to Indoc Agent:", error);
+      setMessages(prev => [...prev, { 
+        id: Date.now().toString(), 
+        role: 'assistant', 
+        content: "I'm sorry, I'm having trouble connecting to the flight deck. Please try again later.",
+        timestamp: timeString
+      }]);
+    } finally {
       setIsTyping(false);
-    }, 2000);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
