@@ -9,11 +9,13 @@ import {
   signInWithPopup, 
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  sendEmailVerification
 } from 'firebase/auth';
 import { getFirestore, doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { app } from '@/lib/firebase';
 import { useRouter, usePathname } from 'next/navigation';
+import { useToast } from '@/hooks/use-toast';
 
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -37,8 +39,6 @@ const createUserDocument = async (user: User, name?: string) => {
 interface AuthContextType {
   user: User | null;
   loading: boolean;
-  error: string | null;
-  setError: (error: string | null) => void;
   logout: () => Promise<void>;
   loginWithEmail: (email: string, pass: string) => Promise<void>;
   signUpWithEmail: (email: string, pass: string, name: string) => Promise<void>;
@@ -50,7 +50,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { toast } = useToast();
   const router = useRouter();
   const pathname = usePathname();
 
@@ -81,62 +81,62 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
 
   const loginWithEmail = async (email: string, pass: string) => {
-     setError(null);
      try {
       await signInWithEmailAndPassword(auth, email, pass);
+      toast({ title: "Login Successful!", description: "Welcome back." });
       // The effects above will handle the redirect
     } catch (error: any) {
       console.error("Error signing in: ", error);
        if (error.code === 'auth/user-not-found') {
-        setError("No account found with this email. Please sign up.");
+        toast({ title: "Login Failed", description: "No account found with this email. Please sign up.", variant: "destructive" });
       } else if (error.code === 'auth/wrong-password') {
-        setError('Incorrect password. Please try again.');
+        toast({ title: "Login Failed", description: "Incorrect password. Please try again.", variant: "destructive" });
       } else {
-        setError(error.message || 'Failed to sign in.');
+        toast({ title: "Login Failed", description: error.message || 'Failed to sign in.', variant: "destructive" });
       }
     }
   };
 
   const signUpWithEmail = async (email: string, pass: string, name: string) => {
-    setError(null);
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
       await createUserDocument(userCredential.user, name);
+      await sendEmailVerification(userCredential.user);
+      toast({ title: "Success!", description: "Please check your inbox to verify your email." });
       // The effects above will handle the redirect
     } catch (error: any) {
       console.error("Error signing up: ", error);
-      setError(error.message || 'Failed to sign up.');
+      toast({ title: "Sign Up Failed", description: error.message || 'Failed to sign up.', variant: "destructive" });
     }
   };
 
   const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
-    setError(null);
     try {
       const userCredential = await signInWithPopup(auth, provider);
       await createUserDocument(userCredential.user);
+      toast({ title: "Login Successful!", description: "Welcome back." });
       // The effects above will handle the redirect
     } catch (error: any) {
       console.error("Error signing in with Google: ", error);
-      setError(error.message || 'Failed to sign in with Google.');
+      toast({ title: "Login Failed", description: error.message || 'Failed to sign in with Google.', variant: "destructive" });
     }
   };
 
   const logout = async () => {
     try {
         await signOut(auth);
+        toast({ title: "Logged Out", description: "You have been successfully logged out." });
         // The effects above will handle the redirect.
     } catch (error) {
         console.error("Error signing out: ", error);
-        setError("Failed to sign out.");
+        toast({ title: "Logout Failed", description: "Failed to sign out.", variant: "destructive" });
     }
   };
 
   const value = {
     user,
     loading,
-    error,
-    setError,
     logout,
     loginWithEmail,
     signUpWithEmail,
@@ -145,7 +145,13 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   return (
     <AuthContext.Provider value={value}>
-      {loading ? <div className="flex items-center justify-center min-h-screen bg-black text-white">Loading...</div> : children}
+      {loading ? (
+        <div className="flex items-center justify-center min-h-screen bg-black text-white">
+          Loading...
+        </div>
+      ) : (
+        children
+      )}
     </AuthContext.Provider>
   );
 };
