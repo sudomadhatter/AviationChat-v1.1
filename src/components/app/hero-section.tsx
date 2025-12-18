@@ -1,7 +1,7 @@
 "use client"
 
-import React, { useState } from 'react';
-import { Sparkles, ArrowRight } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Sparkles, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface HeroSectionProps {
   onStartChat: (message: string) => void;
@@ -9,6 +9,40 @@ interface HeroSectionProps {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onStartChat }) => {
   const [inputValue, setInputValue] = useState('');
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  const checkScrollability = () => {
+    const container = scrollContainerRef.current;
+    if (container) {
+      setCanScrollLeft(container.scrollLeft > 0);
+      setCanScrollRight(container.scrollLeft < container.scrollWidth - container.clientWidth);
+    }
+  };
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    checkScrollability();
+    container?.addEventListener('scroll', checkScrollability);
+    window.addEventListener('resize', checkScrollability);
+
+    return () => {
+      container?.removeEventListener('scroll', checkScrollability);
+      window.removeEventListener('resize', checkScrollability);
+    };
+  }, []);
+
+  const scroll = (direction: 'left' | 'right') => {
+    const container = scrollContainerRef.current;
+    if (container) {
+      const scrollAmount = container.clientWidth * 0.8;
+      container.scrollBy({ 
+        left: direction === 'left' ? -scrollAmount : scrollAmount, 
+        behavior: 'smooth' 
+      });
+    }
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
@@ -72,9 +106,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStartChat }) => {
         </div>
       </div>
 
-      {/* Suggestions */}
-      <div className="mt-6 w-full max-w-full">
-        <div className="flex gap-3 overflow-x-auto whitespace-nowrap pb-2 no-scrollbar">
+      {/* Suggestions Carousel */}
+      <div className="mt-6 w-full max-w-full relative">
+        {canScrollLeft &&
+          <button onClick={() => scroll('left')} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 w-8 h-8 rounded-full bg-white/50 dark:bg-black/50 backdrop-blur-sm border border-black/10 dark:border-white/10 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-black dark:hover:text-white transition-all">
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+        }
+        <div ref={scrollContainerRef} className="flex gap-3 overflow-x-auto whitespace-nowrap pb-2 no-scrollbar scroll-smooth">
           {['What is Vso?', 'What Regs do I need to know to solo', 'Airspace requirements', 'Quiz me on Weather'].map(tag => (
             <button 
               key={tag} 
@@ -85,6 +124,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStartChat }) => {
             </button>
           ))}
         </div>
+        {canScrollRight &&
+          <button onClick={() => scroll('right')} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 w-8 h-8 rounded-full bg-white/50 dark:bg-black/50 backdrop-blur-sm border border-black/10 dark:border-white/10 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-black dark:hover:text-white transition-all">
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        }
       </div>
     </section>
   );
