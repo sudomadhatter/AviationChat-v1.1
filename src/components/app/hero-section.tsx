@@ -73,16 +73,18 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStartChat }) => {
       </div>
 
       {/* Suggestions */}
-      <div className="mt-6 flex flex-wrap justify-center gap-3">
-        {['What is Vso?', 'What Regs do I need to know to solo', 'Airspace requirements', 'Quiz me on Weather'].map(tag => (
-          <button 
-            key={tag} 
-            onClick={() => setInputValue(tag)}
-            className="px-4 py-2 rounded-full border border-black/10 dark:border-white/5 bg-white/90 dark:bg-white/5 hover:bg-white/90 dark:hover:bg-white/10 hover:border-[#24FF00]/30 hover:text-[#24FF00] text-sm font-light text-slate-600 dark:text-slate-400 transition-all backdrop-blur-md"
-          >
-            {tag}
-          </button>
-        ))}
+      <div className="mt-6 w-full max-w-full">
+        <div className="flex gap-3 overflow-x-auto whitespace-nowrap pb-2 no-scrollbar">
+          {['What is Vso?', 'What Regs do I need to know to solo', 'Airspace requirements', 'Quiz me on Weather'].map(tag => (
+            <button 
+              key={tag} 
+              onClick={() => setInputValue(tag)}
+              className="px-4 py-2 rounded-full border border-black/10 dark:border-white/5 bg-white/90 dark:bg-white/5 hover:bg-white/90 dark:hover:bg-white/10 hover:border-[#24FF00]/30 hover:text-[#24FF00] text-sm font-light text-slate-600 dark:text-slate-400 transition-all backdrop-blur-md flex-shrink-0"
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
       </div>
     </section>
   );

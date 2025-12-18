@@ -3,11 +3,10 @@
 import { useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { LoginView } from './login-view';
+import { useToast } from '@/hooks/use-toast';
 
 const UserAuth = () => {
   const { 
-    error, 
-    setError, 
     loginWithEmail, 
     signUpWithEmail, 
     signInWithGoogle 
@@ -17,6 +16,7 @@ const UserAuth = () => {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [isSignUp, setIsSignUp] = useState(false);
+  const { toast } = useToast();
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,7 +33,7 @@ const UserAuth = () => {
       onLogin={handleLogin}
       onSignUp={handleSignUp}
       onGoogleSignIn={signInWithGoogle}
-      onAppleSignIn={() => setError('Apple Sign-In is not implemented yet.')}
+      onAppleSignIn={() => toast({ title: "Not Implemented", description: "Apple Sign-In is coming soon!", variant: "destructive" })}
       email={email}
       setEmail={setEmail}
       password={password}
@@ -42,7 +42,7 @@ const UserAuth = () => {
       setName={setName}
       isSignUp={isSignUp}
       setIsSignUp={setIsSignUp}
-      error={error}
+      error={null}
     />
   );
 };
