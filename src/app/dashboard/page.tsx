@@ -8,11 +8,14 @@ import { VideoTraining } from '../../components/app/video-training';
 import { Library } from '../../components/app/library';
 import { ChatModal, Message } from '../../components/app/chat-modal';
 import { Drawer } from '../../components/app/drawer';
-import { useAuth } from '@/context/AuthContext'; // Make sure the path is correct
+import { useAuth } from '@/context/AuthContext';
+import { getFirestore, doc, getDoc } from 'firebase/firestore';
+import { app } from '@/lib/firebase';
 
 export default function DashboardPage() {
-  const { logout } = useAuth();
+  const { user, logout } = useAuth();
   const [isDark, setIsDark] = useState(true);
+  const [userName, setUserName] = useState<string | null>(null);
   
   // Chat State
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -20,6 +23,30 @@ export default function DashboardPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  // Fetch user data from Firestore
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (user) {
+        // Try to get name from user.displayName first (if available from Google auth or updateProfile)
+        if (user.displayName) {
+             setUserName(user.displayName);
+        } else {
+             // If not, fetch from Firestore
+             const db = getFirestore(app);
+             const docRef = doc(db, "users", user.uid);
+             const docSnap = await getDoc(docRef);
+             if (docSnap.exists()) {
+                 const data = docSnap.data();
+                 if (data.displayName) {
+                     setUserName(data.displayName);
+                 }
+             }
+        }
+      }
+    };
+    fetchUserData();
+  }, [user]);
 
   // Handle Dark Mode
   useEffect(() => {
@@ -36,6 +63,14 @@ export default function DashboardPage() {
   // Handle Logout
   const handleLogout = async () => {
     await logout();
+  };
+  
+  // Helper to get initials
+  const getInitials = (name: string | null) => {
+      if (!name) return 'CP';
+      const parts = name.trim().split(' ');
+      if (parts.length === 1) return parts[0].substring(0, 2).toUpperCase();
+      return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
   };
 
   // Initial greeting
@@ -90,7 +125,13 @@ export default function DashboardPage() {
         
         {/* Floating Navigation */}
         <div className="fixed top-2 left-1/2 transform -translate-x-1/2 z-40 w-[92%] md:w-full md:max-w-fit px-0 md:px-4">
-          <Navbar isDark={isDark} toggleTheme={toggleTheme} onLogout={handleLogout} />
+          <Navbar 
+            isDark={isDark} 
+            toggleTheme={toggleTheme} 
+            onLogout={handleLogout} 
+            userName={userName}
+            userInitials={getInitials(userName)}
+          />
         </div>
 
         {/* Main Scrollable Content */}

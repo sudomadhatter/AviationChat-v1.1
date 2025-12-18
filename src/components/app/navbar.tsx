@@ -8,14 +8,19 @@ interface NavbarProps {
   isDark: boolean;
   toggleTheme: () => void;
   onLogout: () => void;
+  userName?: string | null;
+  userInitials?: string | null;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme, onLogout }) => {
+export const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme, onLogout, userName, userInitials }) => {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const navItems = ['Voice Agents', 'Briefings', 'Library'];
+  
+  const displayName = userName || 'Capt. Maverick';
+  const displayInitials = userInitials || 'CP';
 
   return (
     <nav 
@@ -98,7 +103,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme, onLogout })
           >
             <div className="h-7 w-7 rounded-full bg-gradient-to-br from-[#24FF00] to-green-600 p-[1px] shadow-[0_0_15px_rgba(36,255,0,0.4)] group-hover:scale-110 transition-transform duration-300">
               <div className="h-full w-full rounded-full bg-black flex items-center justify-center">
-                <span className="text-[9px] font-semibold text-white">CP</span>
+                <span className="text-[9px] font-semibold text-white">{displayInitials}</span>
               </div>
             </div>
             <ChevronRight className={`w-3.5 h-3.5 text-slate-500 group-hover:text-black dark:group-hover:text-white transition-transform duration-200 hidden md:block ${isProfileOpen ? 'rotate-90' : ''}`} />
@@ -107,7 +112,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme, onLogout })
           {isProfileOpen && (
              <div className="absolute top-full right-0 mt-4 w-40 bg-white/90 dark:bg-[#0a0a0a]/95 border border-black/10 dark:border-white/10 rounded-xl p-2 shadow-xl ring-1 ring-black/5 dark:ring-white/5 backdrop-blur-xl z-50">
                 <div className="px-3 py-2 text-xs text-slate-500 dark:text-slate-400 border-b border-white/5 mb-1">
-                   Capt. Maverick
+                   {displayName}
                 </div>
                 <button 
                   onClick={onLogout}
