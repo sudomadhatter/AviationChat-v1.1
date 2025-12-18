@@ -8,11 +8,13 @@ interface LoginViewProps {
   onLogin: (e: React.FormEvent<HTMLFormElement>) => void;
   onSignUp: (e: React.FormEvent<HTMLFormElement>) => void;
   onGoogleSignIn: () => void;
-  onAppleSignIn: () => void; // Added for consistency
+  onAppleSignIn: () => void;
   email: string;
   setEmail: (email: string) => void;
   password: string;
   setPassword: (password: string) => void;
+  name: string;
+  setName: (name: string) => void;
   isSignUp: boolean;
   setIsSignUp: (isSignUp: boolean) => void;
   error: string | null;
@@ -27,6 +29,8 @@ export const LoginView: React.FC<LoginViewProps> = ({
   setEmail,
   password,
   setPassword,
+  name,
+  setName,
   isSignUp,
   setIsSignUp,
   error
@@ -140,6 +144,8 @@ export const LoginView: React.FC<LoginViewProps> = ({
                     name="callsign"
                     autoComplete="username"
                     placeholder="Call Sign"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     className="block w-full rounded-full border border-white/10 bg-black/20 py-4 px-6 text-sm font-light text-white placeholder-slate-400 focus:border-[#00C2FF]/50 focus:ring-1 focus:ring-[#00C2FF]/50 focus:bg-black/40 focus:outline-none transition-all backdrop-blur-sm"
                   />
                 </div>

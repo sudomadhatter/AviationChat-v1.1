@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import React, { useState } from 'react';
 import { Sun, Moon, Menu, ChevronRight, LogOut } from 'lucide-react';
@@ -7,16 +7,13 @@ import { useRouter } from 'next/navigation';
 interface NavbarProps {
   isDark: boolean;
   toggleTheme: () => void;
+  onLogout: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme }) => {
+export const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme, onLogout }) => {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-
-  const handleLogout = () => {
-    router.push('/');
-  };
 
   const navItems = ['Voice Agents', 'Briefings', 'Library'];
 
@@ -62,7 +59,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme }) => {
             ))}
              <div className="h-px bg-white/10 my-0.5"></div>
              <button 
-                onClick={handleLogout}
+                onClick={onLogout}
                 className="w-full block px-3 py-2 text-xs text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors text-center font-normal"
               >
                 Logout
@@ -113,7 +110,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme }) => {
                    Capt. Maverick
                 </div>
                 <button 
-                  onClick={handleLogout}
+                  onClick={onLogout}
                   className="w-full flex items-center gap-2 px-3 py-2 text-sm text-slate-600 dark:text-slate-300 hover:text-red-400 dark:hover:text-red-400 hover:bg-black/5 dark:hover:bg-white/5 rounded-lg transition-colors"
                 >
                   <LogOut className="w-3.5 h-3.5" />

@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import React, { useEffect, useState } from 'react';
 import { Navbar } from '../../components/app/navbar';
@@ -8,12 +8,11 @@ import { VideoTraining } from '../../components/app/video-training';
 import { Library } from '../../components/app/library';
 import { ChatModal, Message } from '../../components/app/chat-modal';
 import { Drawer } from '../../components/app/drawer';
-import { useRouter } from 'next/navigation';
+import { useAuth } from '@/context/AuthContext'; // Make sure the path is correct
 
 export default function DashboardPage() {
-  const router = useRouter();
+  const { logout } = useAuth();
   const [isDark, setIsDark] = useState(true);
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // Default to logged in for dashboard
   
   // Chat State
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -33,6 +32,11 @@ export default function DashboardPage() {
   }, [isDark]);
 
   const toggleTheme = () => setIsDark(!isDark);
+  
+  // Handle Logout
+  const handleLogout = async () => {
+    await logout();
+  };
 
   // Initial greeting
   useEffect(() => {
@@ -86,7 +90,7 @@ export default function DashboardPage() {
         
         {/* Floating Navigation */}
         <div className="fixed top-2 left-1/2 transform -translate-x-1/2 z-40 w-[92%] md:w-full md:max-w-fit px-0 md:px-4">
-          <Navbar isDark={isDark} toggleTheme={toggleTheme} />
+          <Navbar isDark={isDark} toggleTheme={toggleTheme} onLogout={handleLogout} />
         </div>
 
         {/* Main Scrollable Content */}
@@ -123,6 +127,7 @@ export default function DashboardPage() {
         messages={messages}
         setMessages={setMessages}
         agentName={chatMode}
+        isDark={isDark}
       />
 
       {/* System Drawer (Resources) */}
