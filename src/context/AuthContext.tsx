@@ -145,8 +145,13 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   return (
     <AuthContext.Provider value={value}>
-      {loading ? <div className="flex items-center justify-center min-h-screen bg-black text-white">Loading...</div> : children}
-      {!loading && children}
+      {loading ? (
+        <div className="flex items-center justify-center min-h-screen bg-black text-white">
+          Loading...
+        </div>
+      ) : (
+        children
+      )}
     </AuthContext.Provider>
   );
 };

@@ -121,7 +121,7 @@ export default function DashboardPage() {
         <div className="scan-bar opacity-30 dark:opacity-100"></div>
       </div>
 
-      <div className={`transition-all duration-1000 ease-[cubic-bezier(0.32,0.72,0,1)] opacity-100 translate-y-0 z-10 relative`}>
+      <div className={`transition-all duration-1000 ease-[cubic-bezier(0.32,0.72,0,1)] opacity-100 translate-y-0 z-10 relative h-full flex flex-col`}>
         
         {/* Floating Navigation */}
         <div className="fixed top-2 left-1/2 transform -translate-x-1/2 z-40 w-[92%] md:w-full md:max-w-fit px-0 md:px-4">
@@ -137,7 +137,7 @@ export default function DashboardPage() {
         {/* Main Scrollable Content */}
         <main 
           id="scroll-root" 
-          className="overflow-y-auto no-scrollbar z-10 h-[100dvh] relative scroll-smooth"
+          className="flex-1 overflow-y-auto no-scrollbar z-10 relative scroll-smooth"
         >
           {/* Main Content Container */}
           <div className="flex flex-col dark:from-black/40 dark:via-black/40 dark:to-black/40 transition-colors duration-500 bg-gradient-to-b from-white/40 via-white/40 to-white/40 max-w-7xl z-10 mr-auto ml-auto pt-32 pr-6 pb-24 pl-6 relative blur-none gap-y-16 backdrop-blur-sm">
