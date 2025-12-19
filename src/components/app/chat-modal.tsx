@@ -48,32 +48,42 @@ export const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose, messages,
     setIsTyping(true);
 
     try {
-      const response = await fetch("http://localhost:8000/chat", {
+      // Map UI name to Backend Agent ID
+      // "Indoc Agent" -> "indoc_agent"
+      const agentId = agentName.toLowerCase().includes('indoc') ? 'indoc_agent' : 'specialist_agent';
+      
+      // Use a demo session ID for now. In a real app, this should come from AuthContext.
+      const sessionId = 'demo-session-001';
+
+      // Call the ADK Agent Backend (Proxied via Next.js to avoid CORS/Mixed Content)
+      const response = await fetch(`/api/agents/${agentId}/sessions/${sessionId}/turn`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ user_input: currentInput }),
+        body: JSON.stringify({ prompt: currentInput }), 
       });
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
+      // ADK response usually contains 'text' or 'content'
       const data = await response.json();
+      const agentResponse = data.text || data.content || "I received your message but couldn't process the response.";
       
       setMessages(prev => [...prev, { 
         id: Date.now().toString(), 
         role: 'assistant', 
-        content: data.response,
+        content: agentResponse,
         timestamp: timeString
       }]);
     } catch (error) {
-      console.error("Error connecting to Indoc Agent:", error);
+      console.error("Error connecting to Agent:", error);
       setMessages(prev => [...prev, { 
         id: Date.now().toString(), 
         role: 'assistant', 
-        content: "I'm sorry, I'm having trouble connecting to the flight deck. Please try again later.",
+        content: "I'm sorry, I'm having trouble connecting to the flight deck (Backend). Please ensure the backend server is running.",
         timestamp: timeString
       }]);
     } finally {

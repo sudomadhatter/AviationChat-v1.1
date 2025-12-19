@@ -70,3 +70,103 @@
 [error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
 [debug] [2025-12-18T22:39:22.098Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
 [debug] [2025-12-18T22:39:22.099Z] > authorizing via signed-in user (sudomadhatter@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-12-19T17:55:07.396Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-12-19T17:55:07.399Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-12-19T17:55:09.600Z] No OAuth tokens found
+[debug] [2025-12-19T17:55:09.601Z] No OAuth tokens found
+[debug] [2025-12-19T17:55:09.602Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-12-19T17:55:09.603Z] No OAuth tokens found
+[debug] [2025-12-19T17:55:09.604Z] No OAuth tokens found
+[debug] [2025-12-19T17:55:09.604Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-12-19T17:56:54.800Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-12-19T17:56:54.804Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-12-19T17:57:01.941Z] Running auto auth
+[debug] [2025-12-19T17:57:01.942Z] Running auto auth
+[debug] [2025-12-19T17:57:01.986Z] No OAuth tokens found
+[debug] [2025-12-19T17:57:01.990Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/aviationchat/billingInfo [none]
+[debug] [2025-12-19T17:57:02.077Z] No OAuth tokens found
+[debug] [2025-12-19T17:57:02.078Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/aviationchat/billingInfo [none]
+[debug] [2025-12-19T17:57:02.241Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/aviationchat/billingInfo 200
+[debug] [2025-12-19T17:57:02.242Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/aviationchat/billingInfo {"name":"projects/aviationchat/billingInfo","projectId":"aviationchat","billingAccountName":"billingAccounts/013C19-0E1C0E-685F8C","billingEnabled":true}
+[debug] [2025-12-19T17:57:02.261Z] No OAuth tokens found
+[debug] [2025-12-19T17:57:02.301Z] No OAuth tokens found
+[debug] [2025-12-19T17:57:02.302Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/aviationchat/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-12-19T17:57:02.302Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/aviationchat/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/aviationchat
+[debug] [2025-12-19T17:57:02.306Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/aviationchat/services/firebaseio.com [none]
+[debug] [2025-12-19T17:57:02.306Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/aviationchat/services/firebaseio.com x-goog-quota-user=projects/aviationchat
+[debug] [2025-12-19T17:57:02.421Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/aviationchat/billingInfo 200
+[debug] [2025-12-19T17:57:02.425Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/aviationchat/billingInfo {"name":"projects/aviationchat/billingInfo","projectId":"aviationchat","billingAccountName":"billingAccounts/013C19-0E1C0E-685F8C","billingEnabled":true}
+[debug] [2025-12-19T17:57:02.427Z] No OAuth tokens found
+[debug] [2025-12-19T17:57:02.440Z] No OAuth tokens found
+[debug] [2025-12-19T17:57:02.441Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/aviationchat/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-12-19T17:57:02.441Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/aviationchat/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/aviationchat
+[debug] [2025-12-19T17:57:02.445Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/aviationchat/services/firebaseio.com [none]
+[debug] [2025-12-19T17:57:02.446Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/aviationchat/services/firebaseio.com x-goog-quota-user=projects/aviationchat
+[debug] [2025-12-19T17:57:02.569Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/aviationchat/services/firebaseio.com 403
+[debug] [2025-12-19T17:57:02.571Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/aviationchat/services/firebaseio.com [omitted]
+[debug] [2025-12-19T17:57:02.678Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/aviationchat/services/cloudfunctions.googleapis.com 200
+[debug] [2025-12-19T17:57:02.679Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/aviationchat/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2025-12-19T17:57:02.702Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/aviationchat/services/firebaseio.com 403
+[debug] [2025-12-19T17:57:02.702Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/aviationchat/services/firebaseio.com [omitted]
+[debug] [2025-12-19T17:57:02.796Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/aviationchat/services/cloudfunctions.googleapis.com 200
+[debug] [2025-12-19T17:57:02.796Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/aviationchat/services/cloudfunctions.googleapis.com [omitted]
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-12-19T17:57:02.811Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-12-19T17:57:02.811Z] > authorizing via signed-in user (sudomadhatter@gmail.com)
+[debug] [2025-12-19T17:57:02.812Z] No OAuth tokens found
+[debug] [2025-12-19T17:57:02.812Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/aviationchat/billingInfo [none]
+[debug] [2025-12-19T17:57:02.899Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/aviationchat/billingInfo 200
+[debug] [2025-12-19T17:57:02.899Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/aviationchat/billingInfo {"name":"projects/aviationchat/billingInfo","projectId":"aviationchat","billingAccountName":"billingAccounts/013C19-0E1C0E-685F8C","billingEnabled":true}
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-12-19T17:57:03.473Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-12-19T17:57:03.474Z] > authorizing via signed-in user (sudomadhatter@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-12-19T17:57:03.509Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-12-19T17:57:03.509Z] > authorizing via signed-in user (sudomadhatter@gmail.com)
+[debug] [2025-12-19T17:57:03.509Z] No OAuth tokens found
+[debug] [2025-12-19T17:57:03.510Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/aviationchat/billingInfo [none]
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-12-19T17:57:03.516Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-12-19T17:57:03.516Z] > authorizing via signed-in user (sudomadhatter@gmail.com)
+[debug] [2025-12-19T17:57:03.517Z] No OAuth tokens found
+[debug] [2025-12-19T17:57:03.517Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/aviationchat/billingInfo [none]
+[debug] [2025-12-19T17:57:03.586Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/aviationchat/billingInfo 200
+[debug] [2025-12-19T17:57:03.586Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/aviationchat/billingInfo {"name":"projects/aviationchat/billingInfo","projectId":"aviationchat","billingAccountName":"billingAccounts/013C19-0E1C0E-685F8C","billingEnabled":true}
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-12-19T17:57:04.031Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-12-19T17:57:04.031Z] > authorizing via signed-in user (sudomadhatter@gmail.com)
+[debug] [2025-12-19T17:57:04.042Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/aviationchat/billingInfo 200
+[debug] [2025-12-19T17:57:04.042Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/aviationchat/billingInfo {"name":"projects/aviationchat/billingInfo","projectId":"aviationchat","billingAccountName":"billingAccounts/013C19-0E1C0E-685F8C","billingEnabled":true}
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-12-19T17:57:04.078Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-12-19T17:57:04.078Z] > authorizing via signed-in user (sudomadhatter@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-12-19T19:30:22.520Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-12-19T19:30:30.283Z] Running auto auth
+[debug] [2025-12-19T19:30:30.364Z] No OAuth tokens found
+[debug] [2025-12-19T19:30:30.369Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/aviationchat/billingInfo [none]
+[debug] [2025-12-19T19:30:30.608Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/aviationchat/billingInfo 200
+[debug] [2025-12-19T19:30:30.611Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/aviationchat/billingInfo {"name":"projects/aviationchat/billingInfo","projectId":"aviationchat","billingAccountName":"billingAccounts/013C19-0E1C0E-685F8C","billingEnabled":true}
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-12-19T19:30:31.858Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-12-19T19:30:31.858Z] > authorizing via signed-in user (sudomadhatter@gmail.com)
+[debug] [2025-12-19T19:30:31.859Z] No OAuth tokens found
+[debug] [2025-12-19T19:30:31.862Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/aviationchat/billingInfo [none]
+[debug] [2025-12-19T19:30:31.946Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/aviationchat/billingInfo 200
+[debug] [2025-12-19T19:30:31.946Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/aviationchat/billingInfo {"name":"projects/aviationchat/billingInfo","projectId":"aviationchat","billingAccountName":"billingAccounts/013C19-0E1C0E-685F8C","billingEnabled":true}
