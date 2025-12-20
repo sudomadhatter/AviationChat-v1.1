@@ -1,16 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
   images: {
     unoptimized: true,
   },
   async rewrites() {
     return [
       {
-        source: '/api/agents/:path*',
-        destination: 'http://127.0.0.1:8000/agents/:path*', // Proxy to Backend (ADK runs on 8000)
+        source: '/api/chat',
+        destination: 'http://127.0.0.1:8080/chat', // Proxy to our Flask Backend
       },
     ];
   },
 };
-
 export default nextConfig;

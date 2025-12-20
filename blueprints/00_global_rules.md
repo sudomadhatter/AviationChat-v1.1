@@ -11,6 +11,8 @@
     * *Constraint:* Used strictly for searching PDF Manuals (FAR/AIM).
     * *Chunking:* "Layout Aware Chunking" enabled.
 * **Voice:** **Gemini Live API** via a **WebSocket Proxy** (handled on Cloud Run).
+* **Environment:**
+    * *Constraint:* Always use the `.venv` executables (e.g., `.venv/bin/python`, `.venv/bin/pip`) for Python commands to ensure dependencies are isolated and correct.
 
 ## 2. Coding Standards
 * **Python:** Use `Pydantic` for ALL tool inputs/outputs.

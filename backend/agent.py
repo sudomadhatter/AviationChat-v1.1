@@ -2,6 +2,18 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import logging
 import os
+import sys
+
+# Re-enable dotenv for secure key management
+try:
+    from dotenv import load_dotenv
+    # Load environment variables from .env file (if it exists)
+    load_dotenv()
+except ImportError:
+    print("Warning: python-dotenv not installed. Relying on system environment variables.")
+
+# FIX: Add root directory to sys.path so we can import 'backend' modules
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Import the Greeting Agent
 from backend.agents.greeting import greeting_agent
@@ -23,7 +35,7 @@ def health_check():
 def chat():
     """
     Main chat endpoint.
-    Expects JSON: { "message": "User input here", "history": [...] }
+    Expects JSON: { "message": "User input here" }
     """
     try:
         data = request.json
@@ -32,14 +44,9 @@ def chat():
         if not user_message:
             return jsonify({"error": "No message provided"}), 400
 
-        # Run the Greeting Agent
-        # Note: The ADK 'agent.query' usually takes just the prompt. 
-        # For a real chat, we might need to pass history if the ADK supports it, 
-        # or just the current message for a stateless "concierge".
-        
         logger.info(f"Received message: {user_message}")
         
-        # Invoke the agent (Synchronous for now)
+        # Invoke the agent
         response_text = greeting_agent.query(user_message)
         
         return jsonify({
@@ -52,5 +59,5 @@ def chat():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    # For local testing
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)), debug=True)
+    port = int(os.environ.get('PORT', 8080))
+    app.run(host='0.0.0.0', port=port)

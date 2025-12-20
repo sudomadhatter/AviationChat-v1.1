@@ -11,10 +11,8 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import QuizCard from './quiz-card';
 
 // --- CONFIG ---
-// If running locally with Docker/Flask on port 8080:
-// You might need a rewrite in next.config.js OR point directly to localhost:8080 if CORS is allowed.
-// For now, let's assume we can hit the backend directly or via a proxy.
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
+// Now pointing to the Next.js Proxy instead of localhost direct
+const API_ENDPOINT = '/api/chat';
 
 type Message = {
   id: number;
@@ -68,8 +66,8 @@ export default function ChatInterface() {
     setIsLoading(true);
 
     try {
-      // 2. Call Backend API
-      const response = await fetch(`${API_URL}/chat`, {
+      // 2. Call Backend API (via Next.js Proxy)
+      const response = await fetch(API_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -78,7 +76,7 @@ export default function ChatInterface() {
       });
 
       if (!response.ok) {
-        throw new Error(`Error: ${response.statusText}`);
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       const data = await response.json();

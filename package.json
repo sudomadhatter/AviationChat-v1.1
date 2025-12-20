@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev -p 9002",
     "dev:frontend": "next dev -p 9002",
-    "dev:backend": "/home/user/studio/.venv/bin/adk web src/agents --reload_agents --session_service_uri sqlite:///home/user/studio/.adk_data/sessions.db",
+    "dev:backend": "export PORT=8080 && .venv/bin/python backend/agent.py",
     "build": "NODE_ENV=production next build",
     "start": "next start",
     "lint": "next lint",
